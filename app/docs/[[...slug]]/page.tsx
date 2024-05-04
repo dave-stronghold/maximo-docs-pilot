@@ -3,23 +3,33 @@ import type { Metadata } from 'next';
 import { DocsPage, DocsBody } from 'fumadocs-ui/page';
 import { notFound } from 'next/navigation';
 
+
+
+
 export default async function Page({
   params,
 }: {
   params: { slug?: string[] };
 }) {
   const page = getPage(params.slug);
+  
+  // console.log(page.data.exports.toc);
 
   if (page == null) {
     notFound();
   }
-
+const sampTOC=[
+  { title: 'doodoo', url: '#code-block', depth: 2 },
+  { title: 'Cards', url: '#cards', depth: 2 },
+  { title: 'bobboo', url: '#boba', depth: 2 }
+]
   const MDX = page.data.exports.default;
 
   return (
     <DocsPage toc={page.data.exports.toc}>
+    {/* <DocsPage toc={sampTOC}> */}
       <DocsBody>
-        <h1>{page.data.title}</h1>
+        {/* <h1>{page.data.title}</h1> */}
         <MDX />
       </DocsBody>
     </DocsPage>

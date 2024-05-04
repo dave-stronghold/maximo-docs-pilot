@@ -1,0 +1,41 @@
+/* ThumbnailsContainer.module.css */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+    margin: auto;
+    height: 70px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin-bottom: 0.5rem; /* Equivalent to mb-2 */
+  }
+  .thumbnail {
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+    // opacity: 0.3;
+    // transition: opacity 0.3s ease-in-out;
+    border: 3px solid transparent;
+  }
+  
+  .backdrop{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.671);
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .active {
+    
+    border-color: rgb(0, 94, 255); /* Equivalent to border-blue-500 */
+  }
+  
+  .bd_active {
+    background-color: rgba(0, 0, 0, 0);
+  }
