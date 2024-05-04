@@ -1,0 +1,21 @@
+.litem{
+  margin:0.5rem;
+  text-align: left;
+  // height: 32px;
+  // margin-top: 0px;
+  cursor: pointer;
+  // width: max-content;
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+  
+.li_active{
+  transform: translateX(5px);
+  color: #2b6ee2;
+  font-weight: 600;
+}
