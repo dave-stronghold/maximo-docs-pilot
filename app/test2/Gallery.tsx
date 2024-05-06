@@ -82,12 +82,23 @@ const Gallery = ({ images }) => {
             <div className='relative'>
                 <Image src={images[activeIndex].src} alt={images[activeIndex].alt} />
                 <div className='flex gap-2 cursor-pointer absolute right-4 bg-transparent bottom-3 p-2 text-black ' onClick={handleFullScreen}>
-                   
+
                     <Fullscreen />
                 </div>
             </div>
 
-            {fullscreen && <ImageFull src={images[activeIndex].src} handleFullScreen={handleFullScreen} alt={images[activeIndex].alt} />}
+            {fullscreen &&
+                (<ImageFull
+                    src={images[activeIndex].src}
+                    handleFullScreen={handleFullScreen}
+                    handlePrev={handlePrev}
+                    handleNext={handleNext}
+                    activeIndex={activeIndex}
+                    totalImages={images.length}
+                    alt={images[activeIndex].alt}
+                />)
+            }
+
             <Caption heading={images[activeIndex].heading} caption={images[activeIndex].caption} />
             {/* <Pagination
         currentPage={activeIndex + 1} // Adjust the current page number since index starts from 0
@@ -117,7 +128,6 @@ const Gallery = ({ images }) => {
                 </Tab>
                 <Tab value="Audio Walkthrough">
                     <AudioPlayer audioSrc={'/audio/mixed.mp3'} timestamps={timestamps} setActiveIndex={setActiveIndex} onTimestampClick={handleTimestampClick} />
-
                 </Tab>
             </Tabs>
 

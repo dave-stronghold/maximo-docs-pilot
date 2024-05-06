@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { XCircle } from 'lucide-react';
 
-const ImageFull = ({ src, alt, handleFullScreen }) => {
+const ImageFull = ({ src, alt, handleFullScreen, handlePrev, handleNext, activeIndex,totalImages }) => {
   const cont = useRef(null);
 
   useEffect(() => {
@@ -9,14 +9,19 @@ const ImageFull = ({ src, alt, handleFullScreen }) => {
       if (event.key === 'Escape') {
         handleFullScreen();
       }
-    };
-  
+      if (event.key === 'ArrowLeft'&& activeIndex > 0) {
+        handlePrev();
+      }
+      if (event.key === 'ArrowRight'&& activeIndex < totalImages-1) {
+        handleNext();
+      }
+    }
     document.addEventListener('keydown', handleKeyDown);
-  
+
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [handleFullScreen]);
+  }, [handleFullScreen,handlePrev,handleNext]);
 
   return (
     <div
