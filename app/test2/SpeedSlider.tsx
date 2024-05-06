@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { speedAtom } from './atoms';
 
 const SpeedSlider = () => {
   const [speed, setSpeed] = useAtom(speedAtom);
+  const [initialSpeed, setInitialSpeed] = useState(speed);
 
-//   const handleSpeedChange = (e) => {
-//     const newSpeed = parseInt(e.target.value);
-//     setSpeed(newSpeed);
-//   };
+  useEffect(() => {
+    setInitialSpeed(speed);
+
+    return () => {
+      setSpeed(initialSpeed);
+    };
+  }, []); // Run once on mount
+
   const handleSpeedChange = (e) => {
-    // Reverse the speed value based on the slider value
     const sliderValue = parseInt(e.target.value);
-    const reversedSpeed = 15 - sliderValue; // Inverse the slider value to get the speed
+    const reversedSpeed = 15 - sliderValue;
     setSpeed(reversedSpeed);
   };
+
   return (
     <div className='mt-2 w-min flex justify-center flex-row gap-2'>
       <input
