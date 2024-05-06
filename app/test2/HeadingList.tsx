@@ -3,7 +3,7 @@ import styles from './HeadingList.module.scss';
 import {ArrowRightCircle} from 'lucide-react'
 const HeadingList = ({ images, activeIndex, setActiveIndex }) => {
   return (
-    <div className="my-4 absolute top-24 right-10 z-10">
+    <div className="my-4 absolute top-28 right-10 z-10">
       <ul className="flex flex-wrap flex-col w-72 content-start">
         {images.map((image, index) => (
           <li

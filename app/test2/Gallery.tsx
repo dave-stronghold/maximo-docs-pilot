@@ -1,5 +1,5 @@
 'use client'
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 // import images from './imageData';
 import ThumbnailsContainer from './ThumbnailsContainer';
 import Thumbnail from './Thumbnail';
@@ -17,7 +17,7 @@ import AudioPlayer from './AudioPlayer';
 import { useAtom } from 'jotai';
 import { isPlayingAtom, activeIndexAtom } from './atoms'; // Import the atoms
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
-import {Fullscreen} from 'lucide-react';
+import { Fullscreen } from 'lucide-react';
 
 const Gallery = ({ images }) => {
     const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom); // Get the value and setter for isPlaying
@@ -77,11 +77,17 @@ const Gallery = ({ images }) => {
         setFullscreen(!fullscreen);
     }
     return (
-        <div className="container mx-auto py-4 not-prose">
+        <div className="container mx-auto py-0 px-0 not-prose">
             <ThumbnailsContainer images={images} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
-            <Image src={images[activeIndex].src} alt={images[activeIndex].alt} />
-            <Fullscreen onClick={handleFullScreen}/>
-            {fullscreen&&<ImageFull src={images[activeIndex].src} handleFullScreen={handleFullScreen} alt={images[activeIndex].alt} />}
+            <div className='relative'>
+                <Image src={images[activeIndex].src} alt={images[activeIndex].alt} />
+                <div className='flex gap-2 cursor-pointer absolute right-4 bg-transparent bottom-3 p-2 text-black ' onClick={handleFullScreen}>
+                   
+                    <Fullscreen />
+                </div>
+            </div>
+
+            {fullscreen && <ImageFull src={images[activeIndex].src} handleFullScreen={handleFullScreen} alt={images[activeIndex].alt} />}
             <Caption heading={images[activeIndex].heading} caption={images[activeIndex].caption} />
             {/* <Pagination
         currentPage={activeIndex + 1} // Adjust the current page number since index starts from 0
@@ -111,7 +117,7 @@ const Gallery = ({ images }) => {
                 </Tab>
                 <Tab value="Audio Walkthrough">
                     <AudioPlayer audioSrc={'/audio/mixed.mp3'} timestamps={timestamps} setActiveIndex={setActiveIndex} onTimestampClick={handleTimestampClick} />
-                    
+
                 </Tab>
             </Tabs>
 
